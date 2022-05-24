@@ -46,7 +46,7 @@ public class ProductSystem {
 	//4. 분석 - 총합 
 	int getSum() {
 		int sum = list[0].getPrice();
-		for(int i=0; i<=index; i++) {
+		for(int i=1; i<=index; i++) { // ?? 
 			sum += list[i].getPrice();
 		} 
 		return sum;
@@ -54,6 +54,6 @@ public class ProductSystem {
 	
 	//5. 분석
 	public void productInfo() {
-		System.out.println("최고 가격은: " + getMax() + "이고 총합은 :" + (getSum()-getMax()));
+		System.out.println("최고 가격 : " + getMax() + "\n총합 : " + (getSum()-getMax()));
 	}
 }

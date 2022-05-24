@@ -29,8 +29,7 @@ public class Question {
 			}
 			if (selectNo == 2) {
 				System.out.print("상품 및 가격> ");
-				String name = sc.nextLine();
-				//System.out.print("가격> ");
+				String name = sc.next();
 				int price = sc.nextInt();
 				productSystem.putProduct(name, price);
 			}
