@@ -8,6 +8,7 @@ public class TestSystem {
 		Scanner sc = new Scanner(System.in);
 		boolean run = true;
 		StudentSystem system = new StudentSystem();
+		int size = 0;
 		
 		while (run) {
 			System.out.println("=== 1.학생수 입력 2. 학생정보 등록 3.학생정보 전체조회 4. 학생정보 분석 5. 종료 ===");
@@ -15,7 +16,7 @@ public class TestSystem {
 			int selectNo = sc.nextInt();
 			if (selectNo == 1) {
 				System.out.println("학생 수> ");
-				int size = sc.nextInt();
+				size = sc.nextInt();
 				system.setListSize(size);
 			}
 			if (selectNo == 2) {

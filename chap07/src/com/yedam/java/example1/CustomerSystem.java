@@ -70,7 +70,6 @@ public class CustomerSystem {
 	}
 
 	void signUp() {
-		// 등급 선택
 		// 회원 정보 입력
 		Customer info = inputAll();
 		// 가입
@@ -78,6 +77,7 @@ public class CustomerSystem {
 	}
 
 	Customer inputAll() {
+		//회원 기보 정보 입력
 		int selected = selectGrade();
 		System.out.print("아이디> ");
 		int id = sc.nextInt();
