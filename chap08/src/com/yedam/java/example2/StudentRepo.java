@@ -3,7 +3,7 @@ package com.yedam.java.example2;
 public class StudentRepo implements Access {
 	//저장소는 싱글톤으로 만들어야함
 	//싱글톤
-	private static StudentRepo instance = new StudentRepo();
+	private static StudentRepo instance = new StudentRepo(); //private static
 	private StudentRepo() { //생성자 private
 		init();
 	}
@@ -13,7 +13,7 @@ public class StudentRepo implements Access {
 		listIndex = -1;
 	}
 	
-	public static StudentRepo getInstance() {
+	public static StudentRepo getInstance() { //static method
 		return instance; 
 	}
 	
