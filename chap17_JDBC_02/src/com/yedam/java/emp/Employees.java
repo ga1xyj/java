@@ -17,9 +17,6 @@ public class Employees {
 	private double salary;
 	private double commisionPct;
 	private int managerId;
-	public int getEmployeeId() {
-		return employeeId;
-	}
 	//모든 컬럼명이 필드로 대응됨
 	//필드는 모두 private
 	
@@ -33,6 +30,9 @@ public class Employees {
 	}
 
 	//getter, setter
+	public int getEmployeeId() {
+		return employeeId;
+	}
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}

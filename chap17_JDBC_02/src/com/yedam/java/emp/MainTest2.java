@@ -9,14 +9,28 @@ public class MainTest2 {
 		boolean run = true;
 		
 		while(run) {
+			printMenu();
+			int selectNum = sc.nextInt();
+			if(selectNum == 1) {
+				
+			}if(selectNum == 2) {
+				
+			}if(selectNum == 3) {
+				
+			}if(selectNum == 4) {
+				
+			}if(selectNum == 5) {
+				
+			}
 			
 		}
 	}
 	
-	public static void menu() {
+	public static void printMenu() {
 		System.out.println("***********************************");
 		System.out.println("1.전체조회|2.단건조회|3.등록|4.수정|5.삭제");
 		System.out.println("***********************************");
 	}
+	
 
 }

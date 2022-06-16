@@ -99,7 +99,7 @@ public class EmpDAO {
 	}
 	// 단건조회
 	//기본키 이용
-	public Employees seletOne(int employeeId) {
+	public Employees selectOne(int employeeId) {
 		Employees emp = null; //null로 초기화
 		try {
 			connect();
@@ -131,7 +131,7 @@ public class EmpDAO {
 	public void insert(Employees emp) {
 		try {
 			connect();
-			String sql = "INSERT INTO employees VALUE (?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO employees VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, emp.getEmployeeId());
 			pstmt.setString(2, emp.getFirstName());
