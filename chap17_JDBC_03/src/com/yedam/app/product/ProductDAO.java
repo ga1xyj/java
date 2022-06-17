@@ -104,9 +104,15 @@ public class ProductDAO extends DAO{
 		Product pro = null;
 		try {
 			connect();
-			String sql = "SELECT * FROM product WHERE product_name = " + productName;
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+			//보통 prepareS 사용하는게 더 편함
+			String sql = "SELECT * FROM product WHERE product_name = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, productName);
+			rs = pstmt.executeQuery();
+			//statment 사용할때는 productName이 String타입이기 때문에 "" 사용
+			//String sql = "SELECT * FROM product WHERE product_name = '" + productName + "'";
+			//stmt = conn.createStatement();
+			//rs = stmt.executeQuery(sql);
 			if(rs.next()) {
 				pro = new Product();
 				pro.setProductId(rs.getInt("product_id"));
