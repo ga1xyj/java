@@ -8,7 +8,17 @@ import javax.swing.plaf.ProgressBarUI;
 
 import com.yedam.app.common.DAO;
 
-public class ProductsDAO extends DAO{
+public class ProductDAO extends DAO{
+	//싱글톤
+	private static ProductDAO productDAO = null;
+	private ProductDAO() {}
+	public static ProductDAO getInstance() {
+		if(productDAO == null) {
+			productDAO = new ProductDAO();
+		}
+		return productDAO;
+	}
+	
 	//등록
 	public void insert(Product product) {
 		try {
@@ -32,7 +42,7 @@ public class ProductsDAO extends DAO{
 	}
 	
 	//수정 - 재고
-	public void update(Product product) {
+	public void updateStock(Product product) {
 		try {
 			connect();
 			String sql = "UPDATE products SET product_stock =" + product.getProductStock() + "WHERE product_id =" +product.getProductId();
@@ -41,6 +51,28 @@ public class ProductsDAO extends DAO{
 			if(result > 0) {
 				System.out.println("정상적으로 수정되었습니다.");
 			} else {
+				System.out.println("정상적으로 수정되지 않았습니다.");
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+	}
+	
+	//수정 - 이름, 가격
+	public void updateInfo(Product product)	{
+		try {
+			connect();
+			String SQL = "UPDATE products SET product_name = ?, product_price = ? WHERE product_id = ?";
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, product.getProductName());
+			pstmt.setInt(2, product.getProductPrice());
+			pstmt.setInt(3, product.getProductId());
+			int result = pstmt.executeUpdate();
+			if(result > 0) {
+				System.out.println("정상적으로 수정되었습니다.");
+			}else {
 				System.out.println("정상적으로 수정되지 않았습니다.");
 			}
 		}catch (SQLException e) {
