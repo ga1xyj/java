@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.yedam.app.common.DAO;
 import com.yedam.app.deal.DealInfo;
+import com.yedam.app.products.ProductDAO;
 
 public class TakeoutGoodsDAO extends DAO{
 	//싱글톤
@@ -21,7 +22,7 @@ public class TakeoutGoodsDAO extends DAO{
 	public void insert(DealInfo info) {
 		try {
 			connect();
-			String sql = "INSERT INTO take_out_goods (product_id, prduct_amount) VALUES (?, ?)";
+			String sql = "INSERT INTO take_out_goods (product_id, product_amount) VALUES (?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, info.getProductId());
 			pstmt.setInt(2, info.getProductAmount());
@@ -38,7 +39,7 @@ public class TakeoutGoodsDAO extends DAO{
 		}
 	}
 	//단건조회-출고내역 존재 유무
-	public boolean selectInfo(int productId) {
+	/*public boolean selectInfo(int productId) {	
 		boolean isSelected = false;
 		try {
 			connect();
@@ -56,13 +57,13 @@ public class TakeoutGoodsDAO extends DAO{
 			disconnect();
 		}
 		return isSelected;
-	}
+	}*/
 	//단건조회-출고수량
 	public int selectAmount(int productId) {
 		int amount = 0;
 		try {
 			connect();
-			String sql = "SELECT NVL(SUM(product_amount), 0) as sum FROM take_out_goods WEHRE product_id =" + productId;
+			String sql = "SELECT NVL(SUM(product_amount), 0) AS sum FROM take_out_goods WHERE product_id =" + productId;
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if(rs.next()) {
@@ -80,7 +81,7 @@ public class TakeoutGoodsDAO extends DAO{
 		List<DealInfo> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "SELECT t.deal_date, t.product_id, p.product_name, t.product_amount FROM products p JOIN take_out_goods t ON p.product_id = r.product_id ORDER BY r.deal_date";
+			String sql = "SELECT t.deal_date, t.product_id, p.product_name, t.product_amount FROM products p JOIN take_out_goods t ON p.product_id = t.product_id ORDER BY t.deal_date";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {

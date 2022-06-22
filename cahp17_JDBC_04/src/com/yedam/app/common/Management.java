@@ -5,7 +5,7 @@ import java.util.Scanner;
 import com.yedam.app.ReceivingGoodsDAO;
 import com.yedam.app.TakeoutGoodsDAO;
 import com.yedam.app.products.ProductInfoManagement;
-import com.yedam.app.products.ProductStockManagement;
+import com.yedam.app.deal.ProductStockManagement;
 import com.yedam.app.products.ProductDAO;
 
 public class Management {
@@ -18,6 +18,11 @@ public class Management {
 	
 	//생성자
 	public void run() {
+		//권한 확인
+			//boolean 타입으로 role 받아오기
+		//boolean role = selectRole();
+			//로그인한 사람 권한 확인
+		//관리자일때만 전체 보기 가능
 		while(true) {
 			menuPrint();
 			int menuNo = menuSelect();
@@ -35,15 +40,29 @@ public class Management {
 				//입력오류
 				showInputError();
 			}
-			
+		}
+	}
+	protected boolean selectRole() {
+		int memberRole = LoginControl.getLoginInfo().getMemberRole();
+		if(memberRole == 0) {
+			return true;
+		}else {
+			return false;
 		}
 	}
 	
+	
 	//메소드
+		//매개변수로 role추가
 	protected void menuPrint() {
-		System.out.println("================================");
-		System.out.println(" 1.제품정보관리 2.제품재과관리 9. 종료 ");
-		System.out.println("================================");
+		//String menu = "";
+		//if(role) {
+			//menu += "1.제품정보관리 ";
+		//}
+		//menu += "2.제품재고관리 9.로그아웃";
+		System.out.println("==================================");
+		System.out.println(" 1.제품정보관리 2.제품재고관리 9.로그아웃 ");
+		System.out.println("==================================");
 	}
 	
 	protected int menuSelect() {
@@ -64,7 +83,14 @@ public class Management {
 		System.out.println("메뉴에서 입력해주시기 바랍니다.");
 	}
 	
-	
+	/*private boolean selectRole() {
+		int memberRole = LoginControl.getLoginInfo().getMemberRole();
+		if(memberRole == 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}*/
 	
 	
 }

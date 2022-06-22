@@ -3,9 +3,6 @@ package com.yedam.app.products;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.plaf.ProgressBarUI;
-
 import com.yedam.app.common.DAO;
 
 public class ProductDAO extends DAO{
@@ -108,7 +105,7 @@ public class ProductDAO extends DAO{
 		Product product = null;
 		try {
 			connect();
-			String sql = "SELECT * FROM product WHERE product_name = ?";
+			String sql = "SELECT * FROM products WHERE product_name = ?";
 			//한행이 나오도록 쿼리 설정
 			//쿼리 먼저 디벨로퍼에서 사용 후 자바에서 사용
 			pstmt = conn.prepareStatement(sql);
@@ -118,7 +115,7 @@ public class ProductDAO extends DAO{
 			if(rs.next()) {
 				product = new Product();
 				product.setProductId(rs.getInt("product_id"));
-				product.setProductName(rs.getString("product_nmae"));
+				product.setProductName(rs.getString("product_name"));
 				product.setProductPrice(rs.getInt("product_price"));
 				product.setProductStock(rs.getInt("product_stock"));
 			}
@@ -147,8 +144,6 @@ public class ProductDAO extends DAO{
 				product.setProductStock(rs.getInt("product_stock"));
 				list.add(product);
 				//add 먼저
-				
-				
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
